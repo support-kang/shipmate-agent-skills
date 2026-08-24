@@ -4,6 +4,9 @@
   <img src="assets/shipmate-logo.png" alt="Shipmate hand-drawn sailing ship logo" width="280">
 </p>
 <p align="center"><strong>Plan carefully. Build test-first. Ship with confidence.</strong></p>
+<p align="center">
+  <a href="https://skills.sh/support-kang/shipmate-agent-skills"><img src="https://skills.sh/b/support-kang/shipmate-agent-skills" alt="Shipmate installs on skills.sh"></a>
+</p>
 
 ```bash
 npx skills add support-kang/shipmate-agent-skills
