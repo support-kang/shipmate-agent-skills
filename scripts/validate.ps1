@@ -7,7 +7,7 @@ $repoRoot = Split-Path -Parent $PSScriptRoot
 
 $errors = [System.Collections.Generic.List[string]]::new()
 $platforms = @('cursor', 'claude-code', 'codex')
-$skills = @('babysit-setup', 'babysit-dev')
+$skills = @('shipmate-setup', 'shipmate')
 
 foreach ($legalFile in @(
     'LICENSE',
@@ -38,9 +38,9 @@ foreach ($platform in $platforms) {
         }
     }
 
-    $workflow = Join-Path $repoRoot "packages/$platform/babysit-dev/references/workflow.md"
-    $agentBlock = Join-Path $repoRoot "packages/$platform/babysit-setup/assets/AGENTS.block.md"
-    $docsIndex = Join-Path $repoRoot "packages/$platform/babysit-setup/assets/docs-template/README.md"
+    $workflow = Join-Path $repoRoot "packages/$platform/shipmate/references/workflow.md"
+    $agentBlock = Join-Path $repoRoot "packages/$platform/shipmate-setup/assets/AGENTS.block.md"
+    $docsIndex = Join-Path $repoRoot "packages/$platform/shipmate-setup/assets/docs-template/README.md"
     foreach ($required in @($workflow, $agentBlock, $docsIndex)) {
         if (-not (Test-Path -LiteralPath $required)) {
             $errors.Add("Missing packaged resource $required")
@@ -49,8 +49,8 @@ foreach ($platform in $platforms) {
 }
 
 $block = Get-Content -Raw -LiteralPath (Join-Path $repoRoot 'shared/AGENTS.block.md')
-if (($block | Select-String -Pattern '<!-- babysit-dev:start -->' -AllMatches).Matches.Count -ne 1 -or
-    ($block | Select-String -Pattern '<!-- babysit-dev:end -->' -AllMatches).Matches.Count -ne 1) {
+if (($block | Select-String -Pattern '<!-- shipmate:start -->' -AllMatches).Matches.Count -ne 1 -or
+    ($block | Select-String -Pattern '<!-- shipmate:end -->' -AllMatches).Matches.Count -ne 1) {
     $errors.Add('The AGENTS managed block must contain exactly one start and one end marker.')
 }
 

@@ -1,4 +1,4 @@
-# Babysit Dev
+# Shipmate
 
 One development workflow for Cursor, Claude Code, and Codex:
 
@@ -17,14 +17,14 @@ The workflow combines Karpathy-inspired caution and goal-driven verification wit
 ```text
 packages/
   cursor/
-    babysit-setup/
-    babysit-dev/
+    shipmate-setup/
+    shipmate/
   claude-code/
-    babysit-setup/
-    babysit-dev/
+    shipmate-setup/
+    shipmate/
   codex/
-    babysit-setup/
-    babysit-dev/
+    shipmate-setup/
+    shipmate/
 shared/
   workflow.md
   docs-template/
@@ -49,7 +49,7 @@ Or install into a specific repository:
 .\scripts\install.ps1 -Platform codex -Scope project -ProjectPath C:\path\to\project
 ```
 
-Then start a fresh agent session. Run `babysit-setup` once in a project, and use `babysit-dev` for subsequent development work.
+Then start a fresh agent session. Run `shipmate-setup` once in a project, and use `shipmate` for subsequent development work.
 
 ## Project documentation created by setup
 
@@ -69,8 +69,8 @@ Every setup also creates or updates a managed section in the repository-root `AG
 
 ## Safety boundary
 
-`babysit-dev` may create local commits, push its task branch, and open a pull request only when the user's request authorizes the full workflow. It never merges. Destructive Git operations and force pushes are prohibited.
+`shipmate` may create local commits, push its task branch, and open a pull request only when the user's request authorizes the full workflow. It never merges. Destructive Git operations and force pushes are prohibited.
 
 ## License
 
-Babysit Dev is released under the [MIT License](LICENSE). Material adapted from third-party projects remains subject to its original license and attribution requirements; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`third_party/`](third_party/).
+Shipmate is released under the [MIT License](LICENSE). Material adapted from third-party projects remains subject to its original license and attribution requirements; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`third_party/`](third_party/).

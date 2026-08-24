@@ -1,5 +1,5 @@
-<!-- babysit-dev:start -->
-## Babysit Dev project contract
+<!-- shipmate:start -->
+## Shipmate project contract
 
 Read `docs/README.md` before planning non-trivial work, then read only the linked documents relevant to the task.
 
@@ -15,4 +15,4 @@ For development tasks:
 - After the PR exists, babysit CI and review feedback until merge-ready. Never merge without a separate explicit request.
 
 Do not use destructive Git operations or force-push unless the user explicitly authorizes the exact action.
-<!-- babysit-dev:end -->
+<!-- shipmate:end -->

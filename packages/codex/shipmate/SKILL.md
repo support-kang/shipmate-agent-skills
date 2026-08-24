@@ -1,9 +1,9 @@
 ---
-name: babysit-dev
+name: shipmate
 description: Run a development task from an approved plan through slice commits, documentation, independent adversarial review, final PR creation, and post-PR babysitting. Use for the full Codex development workflow.
 ---
 
-# Babysit Dev for Codex
+# Shipmate for Codex
 
 Read [references/workflow.md](references/workflow.md) completely and follow it as the authoritative protocol.
 

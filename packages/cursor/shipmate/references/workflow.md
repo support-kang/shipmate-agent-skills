@@ -1,4 +1,4 @@
-# Babysit development protocol
+# Shipmate development protocol
 
 ## Operating principles
 
@@ -17,7 +17,7 @@ Locate the current state from repository evidence before acting. Resume instead 
 
 ### SETUP
 
-Require the documentation contract from `babysit-setup`. If setup is missing, run or request that skill before implementation.
+Require the documentation contract from `shipmate-setup`. If setup is missing, run or request that skill before implementation.
 
 ### PLAN
 
@@ -37,7 +37,7 @@ Use the host's native plan mode when it is available. Do not claim the UI mode c
 
 ### PLAN_GATE
 
-For an interactive request, present the plan and stop for approval before changing product code. A user instruction that explicitly approves execution, such as “go ahead” or “run babysit-dev end to end,” satisfies this gate. Material scope changes return to PLAN.
+For an interactive request, present the plan and stop for approval before changing product code. A user instruction that explicitly approves execution, such as “go ahead” or “run shipmate end to end,” satisfies this gate. Material scope changes return to PLAN.
 
 ### IMPLEMENT
 

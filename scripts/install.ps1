@@ -34,7 +34,7 @@ if ($Scope -eq 'user') {
 New-Item -ItemType Directory -Force -Path $destinationRoot | Out-Null
 $resolvedDestinationRoot = (Resolve-Path -LiteralPath $destinationRoot).Path
 
-foreach ($skillName in @('babysit-setup', 'babysit-dev')) {
+foreach ($skillName in @('shipmate-setup', 'shipmate')) {
     $source = Join-Path $repoRoot "packages/$Platform/$skillName"
     $destination = Join-Path $resolvedDestinationRoot $skillName
     $destinationParent = Split-Path -Parent $destination
@@ -51,4 +51,4 @@ foreach ($skillName in @('babysit-setup', 'babysit-dev')) {
     Write-Output "Installed $skillName to $destination"
 }
 
-Write-Output 'Start a fresh agent session, then run babysit-setup in the target repository.'
+Write-Output 'Start a fresh agent session, then run shipmate-setup in the target repository.'
