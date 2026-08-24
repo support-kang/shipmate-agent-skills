@@ -8,6 +8,8 @@ For development tasks:
 - Understand the affected flow and surface material ambiguity before editing.
 - Prefer no change, existing project code, standard/native capabilities, and already-installed dependencies before new code or packages.
 - Make the smallest correct change; avoid speculative abstractions and unrelated cleanup.
+- Develop behavior-changing code with TDD: prove RED with a focused failing behavioral test, make the minimum change for GREEN, then REFACTOR only while tests remain green.
+- Do not weaken tests to reach GREEN or add a new test framework without explicit approval. Record justified TDD exceptions and the replacement verification in the task plan.
 - Keep `docs/features/`, `docs/plans/`, `docs/decisions/`, `docs/runbooks/`, and `docs/reference/` accurate for the areas affected.
 - Plan non-trivial work before implementation and use coherent, independently verifiable slice commits.
 - Before pushing, run relevant checks and obtain a fresh independent adversarial review of the plan and branch diff.

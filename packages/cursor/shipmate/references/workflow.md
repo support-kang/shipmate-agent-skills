@@ -8,6 +8,7 @@
 - Do not add speculative abstractions, dependencies, configuration, or adjacent cleanup.
 - Every changed line must support the request, its verification, or its required documentation.
 - Never simplify away security, data integrity, accessibility, trust-boundary validation, or explicit requirements.
+- Develop behavior-changing code test-first using RED -> GREEN -> REFACTOR. Keep tests as small and behavioral as the production change.
 
 ## State machine
 
@@ -28,6 +29,7 @@ Inspect repository instructions, relevant documentation, current branch, working
 - assumptions and open questions;
 - acceptance criteria;
 - implementation slices, each independently understandable and verifiable;
+- a TDD test plan naming the first failing test and the focused command for each behavior-changing slice;
 - planned commit boundaries;
 - verification commands;
 - documentation impact;
@@ -43,13 +45,16 @@ For an interactive request, present the plan and stop for approval before changi
 
 Implement one coherent slice at a time. For each slice:
 
-1. Establish the smallest check that can fail for the intended behavior.
-2. Make the minimum correct change.
-3. Run focused verification.
-4. Inspect the full slice diff for unrelated edits, generated noise, secrets, and accidental dependency changes.
-5. Commit only that slice with the repository's commit convention.
+1. **RED:** Write or update the smallest meaningful automated test before production code. Run it and confirm it fails because the requested behavior is missing, not because of syntax, fixtures, environment, or an unrelated baseline failure. For a bug, the test must reproduce the reported failure.
+2. **GREEN:** Make the minimum production change that passes the new test. Run the same focused test and confirm it passes.
+3. **REFACTOR:** Only while green, simplify duplication or naming introduced by the slice. Do not add speculative abstractions. Re-run the focused test after refactoring.
+4. Run the relevant nearby tests to catch regressions.
+5. Inspect the full slice diff for unrelated edits, generated noise, secrets, accidental dependency changes, and tests coupled to implementation details.
+6. Commit the test and implementation together as one green slice using the repository's commit convention.
 
-Do not split commits by arbitrary file count. A slice commit represents one reviewable reason for change. Do not rewrite, squash, or force-push existing user commits without explicit authorization.
+Do not weaken a test merely to make GREEN. Prefer observable behavior over private implementation details, and do not mock away the behavior under test. Do not split commits by arbitrary file count. A slice commit represents one reviewable reason for change and must not intentionally leave the branch red. Do not rewrite, squash, or force-push existing user commits without explicit authorization.
+
+TDD is required for behavior-changing code. Documentation-only edits, non-executable metadata, and generated artifacts may use an explicit exception. If a legacy area has no usable test harness, record the gap and reason in the plan, obtain approval before adding a new dependency or broad framework, and use the smallest executable regression check available.
 
 ### DOCUMENT
 
@@ -80,7 +85,7 @@ Triage every finding as `valid`, `invalid`, or `needs-clarification`. Fix valid 
 
 ### LOCAL_GATE
 
-Run the strongest relevant local checks available: focused tests, broader tests, lint/typecheck/build, documentation links or generation, and `git diff`/status inspection. Record commands and results in the plan. Require a clean working tree except intentionally ignored local files.
+Run the strongest relevant local checks available: the RED/GREEN evidence for new behavior, focused tests, broader tests, lint/typecheck/build, documentation links or generation, and `git diff`/status inspection. Record commands and results in the plan. Require a clean working tree except intentionally ignored local files and no intentionally failing tests.
 
 ### PR
 

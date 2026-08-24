@@ -4,15 +4,15 @@
 
 ## 한국어
 
-Shipmate는 Cursor, Claude Code, Codex에서 동일한 개발 절차를 재사용하기 위한 크로스 에이전트 스킬 모음입니다. 구현을 바로 시작하는 대신 계획과 승인부터 출발하고, 작은 단위의 커밋과 문서 갱신, 독립적인 적대적 리뷰를 거친 뒤 모든 로컬 검증이 끝났을 때만 PR을 생성합니다.
+Shipmate는 Cursor, Claude Code, Codex에서 동일한 개발 절차를 재사용하기 위한 크로스 에이전트 스킬 모음입니다. 구현을 바로 시작하는 대신 계획과 승인부터 출발하고, RED → GREEN → REFACTOR의 TDD 사이클, 작은 단위의 커밋과 문서 갱신, 독립적인 적대적 리뷰를 거친 뒤 모든 로컬 검증이 끝났을 때만 PR을 생성합니다.
 
 두 개의 스킬로 구성됩니다.
 
-- `shipmate-setup`: 프로젝트에 처음 한 번 실행합니다. 최상단 `AGENTS.md`의 공통 작업 규칙과 아래 문서 구조를 만들거나, 기존 내용을 보존하면서 필요한 부분만 보완합니다.
-- `shipmate`: 실제 개발 작업에 사용합니다. 계획 승인 → 구현 슬라이스와 원자적 커밋 → 문서 갱신 → 독립 리뷰 에이전트의 적대적 검토 → 수정 및 최종 검증 → PR 생성 → CI와 리뷰 피드백 관찰 순서로 진행합니다.
+- `shipmate-setup`: 프로젝트에 처음 한 번 실행합니다. 최상단 `AGENTS.md`의 공통 작업 규칙과 아래 문서 구조를 만들고, 기존 테스트 프레임워크·테스트 위치·실행 명령을 탐지해 `docs/reference/testing.md`에 기록합니다.
+- `shipmate`: 실제 개발 작업에 사용합니다. 계획 승인 → RED/GREEN/REFACTOR → 구현 슬라이스와 원자적 커밋 → 문서 갱신 → 독립 리뷰 에이전트의 적대적 검토 → 수정 및 최종 검증 → PR 생성 → CI와 리뷰 피드백 관찰 순서로 진행합니다.
 
 ```text
-SETUP → PLAN → PLAN GATE → IMPLEMENT → DOCUMENT
+SETUP → PLAN → PLAN GATE → RED → GREEN → REFACTOR → DOCUMENT
       → ADVERSARIAL REVIEW → LOCAL GATE → PR → BABYSIT → MERGE-READY
 ```
 
@@ -46,7 +46,7 @@ One development workflow for Cursor, Claude Code, and Codex:
 
 1. Set up durable project documentation and agent instructions.
 2. Plan and obtain the required plan approval.
-3. Implement in reviewable slices with atomic commits.
+3. Develop behavior-changing code test-first with RED -> GREEN -> REFACTOR, then commit reviewable green slices atomically.
 4. Update documentation before shipping.
 5. Run an independent adversarial review and resolve valid findings.
 6. Push and create the pull request only after the local gate is green.
@@ -125,9 +125,10 @@ docs/
   decisions/
   runbooks/
   reference/
+    testing.md
 ```
 
-The setup skill preserves existing documentation and instruction files. It adds only missing structure and a clearly delimited managed block.
+The setup skill preserves existing documentation and instruction files. It adds only missing structure and a clearly delimited managed block. It also detects the existing test framework, test locations, focused and full-suite commands, and configured coverage policy for `docs/reference/testing.md`; it does not add a new framework without explicit approval.
 
 Every setup also creates or updates a managed section in the repository-root `AGENTS.md`. Cursor and Claude Code receive thin host-specific pointers to that shared project contract, so project rules do not drift between agents.
 

@@ -46,6 +46,7 @@ for platform in cursor claude-code codex; do
   require_file "$repo_root/packages/$platform/shipmate/references/workflow.md"
   require_file "$repo_root/packages/$platform/shipmate-setup/assets/AGENTS.block.md"
   require_file "$repo_root/packages/$platform/shipmate-setup/assets/docs-template/README.md"
+  require_file "$repo_root/packages/$platform/shipmate-setup/assets/docs-template/reference/testing.md"
 done
 
 agents_block="$repo_root/shared/AGENTS.block.md"

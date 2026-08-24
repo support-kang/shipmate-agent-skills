@@ -41,7 +41,8 @@ foreach ($platform in $platforms) {
     $workflow = Join-Path $repoRoot "packages/$platform/shipmate/references/workflow.md"
     $agentBlock = Join-Path $repoRoot "packages/$platform/shipmate-setup/assets/AGENTS.block.md"
     $docsIndex = Join-Path $repoRoot "packages/$platform/shipmate-setup/assets/docs-template/README.md"
-    foreach ($required in @($workflow, $agentBlock, $docsIndex)) {
+    $testingReference = Join-Path $repoRoot "packages/$platform/shipmate-setup/assets/docs-template/reference/testing.md"
+    foreach ($required in @($workflow, $agentBlock, $docsIndex, $testingReference)) {
         if (-not (Test-Path -LiteralPath $required)) {
             $errors.Add("Missing packaged resource $required")
         }

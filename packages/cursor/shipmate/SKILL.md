@@ -1,6 +1,6 @@
 ---
 name: shipmate
-description: Run a development task from an approved plan through slice commits, documentation, independent adversarial review, final PR creation, and post-PR babysitting. Use for the full Cursor development workflow.
+description: Run a development task from an approved plan through RED-GREEN-REFACTOR TDD, green slice commits, documentation, independent adversarial review, final PR creation, and post-PR babysitting. Use for the full Cursor development workflow.
 ---
 
 # Shipmate for Cursor
