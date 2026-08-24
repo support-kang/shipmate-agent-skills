@@ -26,4 +26,11 @@ for platform in cursor claude-code codex; do
   cp -R "$repo_root/shared/docs-template" "$docs_assets"
 done
 
-printf '%s\n' 'Synchronized shared workflow and setup assets into all platform packages.'
+logo_source="$repo_root/assets/shipmate-logo.png"
+for skill_name in shipmate shipmate-setup; do
+  skill_assets="$repo_root/packages/codex/$skill_name/assets"
+  mkdir -p "$skill_assets"
+  cp "$logo_source" "$skill_assets/shipmate-logo.png"
+done
+
+printf '%s\n' 'Synchronized shared workflow, setup assets, and Codex icons into platform packages.'

@@ -21,6 +21,17 @@ foreach ($legalFile in @(
     }
 }
 
+foreach ($logoFile in @(
+    'assets/shipmate-logo.png',
+    'packages/codex/shipmate/assets/shipmate-logo.png',
+    'packages/codex/shipmate-setup/assets/shipmate-logo.png'
+)) {
+    $logoPath = Join-Path $repoRoot $logoFile
+    if (-not (Test-Path -LiteralPath $logoPath)) {
+        $errors.Add("Missing logo file $logoPath")
+    }
+}
+
 foreach ($platform in $platforms) {
     foreach ($skillName in $skills) {
         $skillRoot = Join-Path $repoRoot "packages/$platform/$skillName"
@@ -60,4 +71,4 @@ if ($errors.Count -gt 0) {
     exit 1
 }
 
-Write-Output 'Validated 6 skill packages and their shared resources.'
+Write-Output 'Validated 6 skill packages, their shared resources, and Shipmate branding.'

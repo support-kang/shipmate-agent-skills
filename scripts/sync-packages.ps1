@@ -20,4 +20,11 @@ foreach ($platform in $platforms) {
     Copy-Item -LiteralPath (Join-Path $repoRoot 'shared/docs-template') -Destination $docsAssets -Recurse
 }
 
-Write-Output 'Synchronized shared workflow and setup assets into all platform packages.'
+$logoSource = Join-Path $repoRoot 'assets/shipmate-logo.png'
+foreach ($skillName in @('shipmate', 'shipmate-setup')) {
+    $skillAssets = Join-Path $repoRoot "packages/codex/$skillName/assets"
+    New-Item -ItemType Directory -Force -Path $skillAssets | Out-Null
+    Copy-Item -LiteralPath $logoSource -Destination (Join-Path $skillAssets 'shipmate-logo.png') -Force
+}
+
+Write-Output 'Synchronized shared workflow, setup assets, and Codex icons into platform packages.'

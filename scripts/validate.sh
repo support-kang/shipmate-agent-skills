@@ -22,6 +22,13 @@ for legal_file in \
   require_file "$repo_root/$legal_file"
 done
 
+for logo_file in \
+  assets/shipmate-logo.png \
+  packages/codex/shipmate/assets/shipmate-logo.png \
+  packages/codex/shipmate-setup/assets/shipmate-logo.png; do
+  require_file "$repo_root/$logo_file"
+done
+
 for platform in cursor claude-code codex; do
   for skill_name in shipmate-setup shipmate; do
     skill_root="$repo_root/packages/$platform/$skill_name"
@@ -62,4 +69,4 @@ if [[ "$errors" -ne 0 ]]; then
   exit 1
 fi
 
-printf '%s\n' 'Validated 6 skill packages and their shared resources.'
+printf '%s\n' 'Validated 6 skill packages, their shared resources, and Shipmate branding.'

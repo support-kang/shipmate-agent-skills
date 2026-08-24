@@ -1,5 +1,9 @@
 # Shipmate
 
+<p align="center">
+  <img src="assets/shipmate-logo.png" alt="Shipmate hand-drawn sailing ship logo" width="280">
+</p>
+
 [한국어](#한국어) · [English](#english)
 
 ## 한국어

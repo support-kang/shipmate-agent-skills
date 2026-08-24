@@ -1,6 +1,8 @@
 interface:
   display_name: "Shipmate Setup"
   short_description: "Initialize Shipmate project docs and agent rules"
+  icon_small: "./assets/shipmate-logo.png"
+  icon_large: "./assets/shipmate-logo.png"
   default_prompt: "Use $shipmate-setup to initialize this repository for Shipmate."
 policy:
   allow_implicit_invocation: true
