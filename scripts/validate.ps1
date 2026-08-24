@@ -9,6 +9,18 @@ $errors = [System.Collections.Generic.List[string]]::new()
 $platforms = @('cursor', 'claude-code', 'codex')
 $skills = @('babysit-setup', 'babysit-dev')
 
+foreach ($legalFile in @(
+    'LICENSE',
+    'THIRD_PARTY_NOTICES.md',
+    'third_party/ponytail/LICENSE',
+    'third_party/karpathy-guidelines/NOTICE.md'
+)) {
+    $legalPath = Join-Path $repoRoot $legalFile
+    if (-not (Test-Path -LiteralPath $legalPath)) {
+        $errors.Add("Missing licensing file $legalPath")
+    }
+}
+
 foreach ($platform in $platforms) {
     foreach ($skillName in $skills) {
         $skillRoot = Join-Path $repoRoot "packages/$platform/$skillName"

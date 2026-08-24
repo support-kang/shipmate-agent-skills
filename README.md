@@ -10,7 +10,7 @@ One development workflow for Cursor, Claude Code, and Codex:
 6. Push and create the pull request only after the local gate is green.
 7. Babysit the open pull request without merging it.
 
-The workflow combines Karpathy-inspired caution and goal-driven verification with Ponytail-inspired simplicity and YAGNI. It is an original orchestration layer; see [NOTICE.md](NOTICE.md) for inspirations.
+The workflow combines Karpathy-inspired caution and goal-driven verification with Ponytail-inspired simplicity and YAGNI. It is an original orchestration layer; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution and licensing details.
 
 ## Repository layout
 
@@ -70,3 +70,7 @@ Every setup also creates or updates a managed section in the repository-root `AG
 ## Safety boundary
 
 `babysit-dev` may create local commits, push its task branch, and open a pull request only when the user's request authorizes the full workflow. It never merges. Destructive Git operations and force pushes are prohibited.
+
+## License
+
+Babysit Dev is released under the [MIT License](LICENSE). Material adapted from third-party projects remains subject to its original license and attribution requirements; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and [`third_party/`](third_party/).
