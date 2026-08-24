@@ -21,9 +21,8 @@ Pembuatan PR adalah tahap terakhir pengembangan lokal. Shipmate tidak pernah mel
 
 ## Instalasi
 
-macOS/Linux: `./scripts/install.sh codex`  
-Windows: `.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-Ganti `codex` dengan `cursor` atau `claude-code` bila diperlukan. Mulai sesi agen baru, jalankan `shipmate-setup` terlebih dahulu, lalu gunakan `shipmate` untuk pekerjaan berikutnya.
+Setelah instalasi, mulai sesi agen baru, jalankan `shipmate-setup` tepat satu kali untuk proyek tersebut, lalu gunakan `shipmate` untuk pekerjaan berikutnya.
 
 Setup mempertahankan file yang ada dan hanya menambahkan struktur yang belum tersedia serta blok terkelola dengan batas yang jelas. Shipmate menggunakan [Lisensi MIT](../../LICENSE); lihat [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md) untuk atribusi.

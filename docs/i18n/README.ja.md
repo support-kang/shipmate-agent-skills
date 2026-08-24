@@ -21,9 +21,8 @@ PR の作成はローカル開発の最後の段階です。Shipmate は明示�
 
 ## インストール
 
-macOS/Linux: `./scripts/install.sh codex`  
-Windows: `.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-`codex` は `cursor` または `claude-code` に置き換えられます。新しいエージェントセッションを開始し、最初に `shipmate-setup`、その後の開発では `shipmate` を使用してください。
+インストール後に新しいエージェントセッションを開始し、そのプロジェクトで `shipmate-setup` を一度だけ実行してください。その後の開発では `shipmate` を使用します。
 
 セットアップは既存ファイルを保持し、不足している構造と明確に区切られた管理ブロックだけを追加します。ライセンスは [MIT](../../LICENSE)、第三者の帰属情報は [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md) を参照してください。

@@ -21,9 +21,8 @@ Tạo PR là bước cuối cùng của quá trình phát triển cục bộ. Sh
 
 ## Cài đặt
 
-macOS/Linux: `./scripts/install.sh codex`  
-Windows: `.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-Có thể thay `codex` bằng `cursor` hoặc `claude-code`. Hãy bắt đầu phiên tác tử mới, chạy `shipmate-setup` trước, rồi dùng `shipmate` cho các công việc tiếp theo.
+Sau khi cài đặt, hãy bắt đầu phiên tác tử mới, chạy `shipmate-setup` đúng một lần cho dự án, rồi dùng `shipmate` cho các công việc tiếp theo.
 
 Quá trình thiết lập giữ nguyên các tệp hiện có và chỉ thêm cấu trúc còn thiếu cùng một khối được quản lý có ranh giới rõ ràng. Shipmate dùng [Giấy phép MIT](../../LICENSE); xem [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md) để biết thông tin ghi công.

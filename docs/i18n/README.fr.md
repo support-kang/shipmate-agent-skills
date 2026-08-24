@@ -21,9 +21,8 @@ La création de la PR est la dernière étape du développement local. Shipmate 
 
 ## Installation
 
-macOS/Linux : `./scripts/install.sh codex`  
-Windows : `.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-Remplacez `codex` par `cursor` ou `claude-code` si nécessaire. Démarrez une nouvelle session, lancez d'abord `shipmate-setup`, puis utilisez `shipmate` pour les travaux suivants.
+Après l'installation, démarrez une nouvelle session, exécutez `shipmate-setup` exactement une fois pour le projet, puis utilisez `shipmate` pour les travaux suivants.
 
 La configuration préserve les fichiers existants et ajoute uniquement la structure manquante et un bloc géré clairement délimité. Shipmate est sous [licence MIT](../../LICENSE) ; consultez [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md) pour les attributions.

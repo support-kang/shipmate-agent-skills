@@ -100,7 +100,7 @@ mkdir -p "$destination_root"
 destination_root="$(cd "$destination_root" && pwd -P)"
 
 for skill_name in shipmate-setup shipmate; do
-  source_path="$repo_root/packages/$platform/$skill_name"
+  source_path="$repo_root/skills/$skill_name"
   destination="$destination_root/$skill_name"
 
   case "$destination" in

@@ -35,7 +35,7 @@ New-Item -ItemType Directory -Force -Path $destinationRoot | Out-Null
 $resolvedDestinationRoot = (Resolve-Path -LiteralPath $destinationRoot).Path
 
 foreach ($skillName in @('shipmate-setup', 'shipmate')) {
-    $source = Join-Path $repoRoot "packages/$Platform/$skillName"
+    $source = Join-Path $repoRoot "skills/$skillName"
     $destination = Join-Path $resolvedDestinationRoot $skillName
     $destinationParent = Split-Path -Parent $destination
     if ($destinationParent -ne $resolvedDestinationRoot -or (Split-Path -Leaf $destination) -ne $skillName) {

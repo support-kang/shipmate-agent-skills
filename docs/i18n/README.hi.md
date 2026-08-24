@@ -21,9 +21,8 @@ PR बनाना स्थानीय विकास का अंतिम 
 
 ## इंस्टॉलेशन
 
-macOS/Linux: `./scripts/install.sh codex`  
-Windows: `.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-ज़रूरत के अनुसार `codex` को `cursor` या `claude-code` से बदलें। नया एजेंट सत्र शुरू करें, पहले `shipmate-setup` चलाएँ और बाद के काम के लिए `shipmate` उपयोग करें।
+इंस्टॉलेशन के बाद नया एजेंट सत्र शुरू करें, प्रोजेक्ट के लिए `shipmate-setup` ठीक एक बार चलाएँ और बाद के काम के लिए `shipmate` उपयोग करें।
 
 सेटअप मौजूदा फ़ाइलों को सुरक्षित रखता है और केवल गायब संरचना तथा स्पष्ट सीमा वाला प्रबंधित ब्लॉक जोड़ता है। Shipmate [MIT लाइसेंस](../../LICENSE) के अंतर्गत है; तृतीय-पक्ष श्रेय के लिए [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md) देखें।

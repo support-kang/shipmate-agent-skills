@@ -21,9 +21,8 @@ SETUP → PLAN → PLAN GATE → RED → GREEN → REFACTOR → DOCUMENT
 
 ## 安装
 
-macOS/Linux：`./scripts/install.sh codex`  
-Windows：`.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-可将 `codex` 替换为 `cursor` 或 `claude-code`。启动新的智能体会话，先运行 `shipmate-setup`，之后的开发任务使用 `shipmate`。
+安装后启动新的智能体会话，并为该项目仅运行一次 `shipmate-setup`。之后的开发任务使用 `shipmate`。
 
 设置过程会保留现有文件，只添加缺失的结构和边界清晰的托管区块。项目采用 [MIT 许可证](../../LICENSE)，第三方归属信息见 [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md)。

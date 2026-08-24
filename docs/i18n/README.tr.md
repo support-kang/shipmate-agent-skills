@@ -21,9 +21,8 @@ PR oluşturmak yerel geliştirmedeki son adımdır. Shipmate açık bir istek ol
 
 ## Kurulum
 
-macOS/Linux: `./scripts/install.sh codex`  
-Windows: `.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-Gerektiğinde `codex` yerine `cursor` veya `claude-code` kullanın. Yeni bir ajan oturumu başlatın, önce `shipmate-setup`, sonraki işler için `shipmate` çalıştırın.
+Kurulumdan sonra yeni bir ajan oturumu başlatın, proje için `shipmate-setup` komutunu tam bir kez çalıştırın ve sonraki işler için `shipmate` kullanın.
 
 Kurulum mevcut dosyaları korur; yalnızca eksik yapıyı ve sınırları açıkça belirlenmiş yönetilen bir bloğu ekler. Shipmate [MIT Lisansı](../../LICENSE) ile yayımlanır; atıflar için [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md) dosyasına bakın.

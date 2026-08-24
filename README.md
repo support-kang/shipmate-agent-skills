@@ -5,6 +5,10 @@
 </p>
 <p align="center"><strong>Plan carefully. Build test-first. Ship with confidence.</strong></p>
 
+```bash
+npx skills add support-kang/shipmate-agent-skills
+```
+
 [English](#english) · [한국어](#한국어)
 
 **Translations:** [日本語](docs/i18n/README.ja.md) · [简体中文](docs/i18n/README.zh-CN.md) · [繁體中文](docs/i18n/README.zh-TW.md) · [Español](docs/i18n/README.es.md) · [Português (Brasil)](docs/i18n/README.pt-BR.md) · [Français](docs/i18n/README.fr.md) · [Deutsch](docs/i18n/README.de.md) · [Italiano](docs/i18n/README.it.md) · [Русский](docs/i18n/README.ru.md) · [العربية](docs/i18n/README.ar.md) · [हिन्दी](docs/i18n/README.hi.md) · [Bahasa Indonesia](docs/i18n/README.id.md) · [Tiếng Việt](docs/i18n/README.vi.md) · [ไทย](docs/i18n/README.th.md) · [Türkçe](docs/i18n/README.tr.md) · [Polski](docs/i18n/README.pl.md) · [Українська](docs/i18n/README.uk.md)
@@ -23,70 +27,106 @@ One development workflow for Cursor, Claude Code, and Codex:
 
 The workflow combines Karpathy-inspired caution and goal-driven verification with Ponytail-inspired simplicity and YAGNI. It is an original orchestration layer; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution and licensing details.
 
+## See the loop
+
+```text
+USER  Add password reset.
+
+SHIPMATE  STATE: PLAN
+          ↓ plan approved
+          3 implementation slices
+          ↓ RED → GREEN → REFACTOR
+          tests green · docs updated
+          ↓ fresh adversarial review
+          ⚠ missing rate-limit test
+          ↓ fix · local gate green
+          PR created
+          ↓ CI and review babysitting
+          MERGE-READY
+```
+
+See the [30–45 second recording storyboard](docs/demo/recording-script.md) for the real terminal demo scenario.
+
+## Why Shipmate?
+
+**Not another collection of 50 skills.** Shipmate is opinionated:
+
+- one development workflow
+- two focused skills
+- three coding agents
+- plan before code
+- test-first behavior changes
+- small, reviewable commits
+- documentation that stays current
+- independent adversarial review
+- a PR that stops at merge-ready
+
+**100 generic skills? No. One development loop done properly.**
+
 ## Install
 
-### Install with an AI agent
+### Recommended
+
+Install the two canonical skills with the standard Agent Skills CLI:
+
+```bash
+npx skills add support-kang/shipmate-agent-skills
+```
+
+The CLI discovers `skills/shipmate` and `skills/shipmate-setup`, then lets you choose Cursor, Claude Code, Codex, or another supported agent. Installation is project-level by default; add `-g` for your user profile:
+
+```bash
+npx skills add support-kang/shipmate-agent-skills -g
+```
+
+For a non-interactive global installation to all three primary agents:
+
+```bash
+npx skills add support-kang/shipmate-agent-skills -g -y -a cursor -a claude-code -a codex --skill '*'
+```
+
+### Ask your AI agent to install it
 
 Copy and paste this instruction into Cursor, Claude Code, or Codex:
 
 ```text
-Install Shipmate from https://github.com/support-kang/shipmate-agent-skills into my user profile.
+Install both Shipmate skills from support-kang/shipmate-agent-skills for the coding agent you are currently running in.
 
-1. Detect whether you are currently running in Cursor, Claude Code, or Codex, and select exactly one matching platform value: cursor, claude-code, or codex.
-2. Detect the operating system. Clone the repository into a temporary or dedicated tools directory. If a clean clone already exists, update it with a safe fast-forward pull; do not overwrite unrelated local changes.
-3. On macOS/Linux, run: ./scripts/install.sh <platform>
-   On Windows, run: .\scripts\install.ps1 -Platform <platform>
-4. If the destination already contains these Shipmate skills, update only those exact directories with --force on macOS/Linux or -Force on Windows. Never overwrite unrelated skill directories.
-5. Verify that both shipmate and shipmate-setup were installed in the selected agent's user-level skills directory.
-6. Do not run shipmate-setup and do not modify the current project as part of the installation itself.
-7. Report the detected platform, installed paths, and verification result. Then instruct me to start a fresh agent session in the target project and run shipmate-setup exactly once for that project. After setup, use shipmate for development tasks.
-```
-
-### macOS/Linux
-
-Clone the repository, then install both skills for the host you use:
-
-```bash
-git clone https://github.com/support-kang/shipmate-agent-skills.git
-cd shipmate-agent-skills
-# Run exactly one of the following:
-./scripts/install.sh cursor
-./scripts/install.sh claude-code
-./scripts/install.sh codex
-```
-
-Or install into a specific repository:
-
-```bash
-./scripts/install.sh codex --scope project --project-path /path/to/project
-```
-
-### Windows
-
-Clone the repository, then install both skills for the host you use:
-
-```powershell
-git clone https://github.com/support-kang/shipmate-agent-skills.git
-Set-Location shipmate-agent-skills
-# Run exactly one of the following:
-.\scripts\install.ps1 -Platform cursor
-.\scripts\install.ps1 -Platform claude-code
-.\scripts\install.ps1 -Platform codex
-```
-
-Or install into a specific repository:
-
-```powershell
-.\scripts\install.ps1 -Platform codex -Scope project -ProjectPath C:\path\to\project
+1. Run `npx skills add support-kang/shipmate-agent-skills -g` and select both `shipmate` and `shipmate-setup` for the current agent.
+2. Do not modify the current project during installation.
+3. Verify the installation with `npx skills list -g` and report the installed paths.
+4. Tell me to start a fresh agent session in the target project and run `shipmate-setup` exactly once for that project. After setup, use `shipmate` for development tasks.
 ```
 
 ### After installation
 
 Start a fresh agent session in the target project and run `shipmate-setup` exactly once for that project. After the one-time setup, use `shipmate` for subsequent development work; do not repeat setup for every task.
 
+<details>
+<summary>Manual installation fallback</summary>
+
+If the Skills CLI is unavailable, clone this repository and use the legacy platform scripts:
+
+```bash
+./scripts/install.sh cursor
+./scripts/install.sh claude-code
+./scripts/install.sh codex
+```
+
+```powershell
+.\scripts\install.ps1 -Platform cursor
+.\scripts\install.ps1 -Platform claude-code
+.\scripts\install.ps1 -Platform codex
+```
+
+</details>
+
 ## Repository layout
 
 ```text
+skills/
+  shipmate-setup/       # canonical universal skill
+  shipmate/             # canonical universal skill
 packages/
   cursor/
     shipmate-setup/
@@ -97,6 +137,7 @@ packages/
   codex/
     shipmate-setup/
     shipmate/
+                      # compatibility adapters for legacy installers
 shared/
   workflow.md
   docs-template/
@@ -156,22 +197,16 @@ PR 생성은 로컬 개발 과정의 마지막 단계입니다. PR이 생성된 
 
 Karpathy Guidelines의 신중한 계획·검증 원칙과 Ponytail의 YAGNI·최소 변경 원칙에서 영향을 받았습니다. 원본 프로젝트의 라이선스와 출처는 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)에 정리되어 있습니다.
 
-빠른 설치:
-
-macOS/Linux:
+가장 간단한 설치 방법:
 
 ```bash
-./scripts/install.sh cursor
-./scripts/install.sh claude-code
-./scripts/install.sh codex
+npx skills add support-kang/shipmate-agent-skills
 ```
 
-Windows:
+사용자 프로필 전체에 설치하려면 `-g`를 추가하세요.
 
-```powershell
-.\scripts\install.ps1 -Platform cursor
-.\scripts\install.ps1 -Platform claude-code
-.\scripts\install.ps1 -Platform codex
+```bash
+npx skills add support-kang/shipmate-agent-skills -g
 ```
 
 설치 후 대상 프로젝트에서 에이전트를 새 세션으로 시작하고, 해당 프로젝트에 `shipmate-setup`을 정확히 한 번만 실행하세요. 일회성 설정이 끝난 뒤에는 작업마다 설정을 반복하지 말고 `shipmate`를 사용하면 됩니다.

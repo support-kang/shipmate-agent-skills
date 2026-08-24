@@ -21,9 +21,8 @@ SETUP → PLAN → PLAN GATE → RED → GREEN → REFACTOR → DOCUMENT
 
 ## Встановлення
 
-macOS/Linux: `./scripts/install.sh codex`  
-Windows: `.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-За потреби замініть `codex` на `cursor` або `claude-code`. Почніть нову сесію агента, спершу запустіть `shipmate-setup`, а для подальших завдань використовуйте `shipmate`.
+Після встановлення почніть нову сесію агента, запустіть `shipmate-setup` рівно один раз для проєкту, а для подальших завдань використовуйте `shipmate`.
 
 Налаштування зберігає наявні файли й додає лише відсутню структуру та чітко обмежений керований блок. Shipmate поширюється за [ліцензією MIT](../../LICENSE); відомості про атрибуцію наведені в [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md).

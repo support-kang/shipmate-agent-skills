@@ -21,9 +21,8 @@ SETUP → PLAN → PLAN GATE → RED → GREEN → REFACTOR → DOCUMENT
 
 ## التثبيت
 
-macOS/Linux: `./scripts/install.sh codex`  
-Windows: `.\scripts\install.ps1 -Platform codex`
+`npx skills add support-kang/shipmate-agent-skills`
 
-يمكن استبدال `codex` بـ `cursor` أو `claude-code`. ابدأ جلسة وكيل جديدة، وشغّل `shipmate-setup` أولاً، ثم استخدم `shipmate` للمهام اللاحقة.
+بعد التثبيت، ابدأ جلسة وكيل جديدة وشغّل `shipmate-setup` مرة واحدة فقط للمشروع، ثم استخدم `shipmate` للمهام اللاحقة.
 
 يحافظ الإعداد على الملفات الحالية ولا يضيف إلا البنية الناقصة وكتلة مُدارة محددة بوضوح. يستخدم Shipmate [ترخيص MIT](../../LICENSE)، وتوجد نسب أعمال الأطراف الثالثة في [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md).
