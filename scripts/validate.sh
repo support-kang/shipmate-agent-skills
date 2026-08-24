@@ -29,6 +29,10 @@ for logo_file in \
   require_file "$repo_root/$logo_file"
 done
 
+for locale in ar de es fr hi id it ja pl pt-BR ru th tr uk vi zh-CN zh-TW; do
+  require_file "$repo_root/docs/i18n/README.$locale.md"
+done
+
 for platform in cursor claude-code codex; do
   for skill_name in shipmate-setup shipmate; do
     skill_root="$repo_root/packages/$platform/$skill_name"
@@ -69,4 +73,4 @@ if [[ "$errors" -ne 0 ]]; then
   exit 1
 fi
 
-printf '%s\n' 'Validated 6 skill packages, their shared resources, and Shipmate branding.'
+printf '%s\n' 'Validated 6 skill packages, 17 translations, shared resources, and Shipmate branding.'

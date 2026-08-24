@@ -1,0 +1,29 @@
+# Shipmate
+
+<p align="center"><img src="../../assets/shipmate-logo.png" alt="Логотип Shipmate" width="280"></p>
+<p align="center"><strong>Планируйте тщательно. Разрабатывайте через тесты. Выпускайте уверенно.</strong></p>
+
+[한국어 / English](../../README.md)
+
+Shipmate — это навык многоагентного рабочего процесса, который объединяет планирование, TDD, документацию, независимое критическое ревью и мониторинг PR, делая разработку с ИИ эффективнее и надёжнее. Он работает с Cursor, Claude Code и Codex.
+
+## Навыки
+
+- `shipmate-setup`: запускается один раз для проекта и настраивает корневой `AGENTS.md`, устойчивую структуру документации и обнаруженные рекомендации по TDD.
+- `shipmate`: проводит утверждённый план через RED → GREEN → REFACTOR, атомарные коммиты по срезам, документацию, независимое критическое ревью, финальное создание PR и наблюдение до готовности к слиянию.
+
+```text
+SETUP → PLAN → PLAN GATE → RED → GREEN → REFACTOR → DOCUMENT
+      → ADVERSARIAL REVIEW → LOCAL GATE → PR → BABYSIT → MERGE-READY
+```
+
+Создание PR — последний этап локальной разработки. Shipmate никогда не выполняет слияние без явного запроса.
+
+## Установка
+
+macOS/Linux: `./scripts/install.sh codex`  
+Windows: `.\scripts\install.ps1 -Platform codex`
+
+При необходимости замените `codex` на `cursor` или `claude-code`. Начните новую сессию агента, сначала запустите `shipmate-setup`, а затем используйте `shipmate`.
+
+Настройка сохраняет существующие файлы и добавляет только недостающую структуру и чётко ограниченный управляемый блок. Shipmate распространяется по [лицензии MIT](../../LICENSE); сведения об атрибуции приведены в [THIRD_PARTY_NOTICES.md](../../THIRD_PARTY_NOTICES.md).

@@ -7,6 +7,8 @@
 
 [한국어](#한국어) · [English](#english)
 
+**Translations:** [日本語](docs/i18n/README.ja.md) · [简体中文](docs/i18n/README.zh-CN.md) · [繁體中文](docs/i18n/README.zh-TW.md) · [Español](docs/i18n/README.es.md) · [Português (Brasil)](docs/i18n/README.pt-BR.md) · [Français](docs/i18n/README.fr.md) · [Deutsch](docs/i18n/README.de.md) · [Italiano](docs/i18n/README.it.md) · [Русский](docs/i18n/README.ru.md) · [العربية](docs/i18n/README.ar.md) · [हिन्दी](docs/i18n/README.hi.md) · [Bahasa Indonesia](docs/i18n/README.id.md) · [Tiếng Việt](docs/i18n/README.vi.md) · [ไทย](docs/i18n/README.th.md) · [Türkçe](docs/i18n/README.tr.md) · [Polski](docs/i18n/README.pl.md) · [Українська](docs/i18n/README.uk.md)
+
 ## 한국어
 
 Shipmate는 계획, TDD, 문서화, 적대적 리뷰, PR 모니터링을 하나의 흐름으로 연결해 효율적이고 신뢰할 수 있는 AI 기반 개발을 돕는 멀티 에이전트 워크플로 스킬입니다. 구현을 바로 시작하는 대신 계획과 승인부터 출발하고, RED → GREEN → REFACTOR의 TDD 사이클, 작은 단위의 커밋과 문서 갱신, 독립적인 적대적 리뷰를 거친 뒤 모든 로컬 검증이 끝났을 때만 PR을 생성합니다.
@@ -75,6 +77,10 @@ packages/
 shared/
   workflow.md
   docs-template/
+docs/
+  i18n/
+assets/
+  shipmate-logo.png
 scripts/
   install.sh
   install.ps1

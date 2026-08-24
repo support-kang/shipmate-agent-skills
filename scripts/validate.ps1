@@ -32,6 +32,17 @@ foreach ($logoFile in @(
     }
 }
 
+$translationLocales = @(
+    'ar', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'pl',
+    'pt-BR', 'ru', 'th', 'tr', 'uk', 'vi', 'zh-CN', 'zh-TW'
+)
+foreach ($locale in $translationLocales) {
+    $translationPath = Join-Path $repoRoot "docs/i18n/README.$locale.md"
+    if (-not (Test-Path -LiteralPath $translationPath)) {
+        $errors.Add("Missing translation file $translationPath")
+    }
+}
+
 foreach ($platform in $platforms) {
     foreach ($skillName in $skills) {
         $skillRoot = Join-Path $repoRoot "packages/$platform/$skillName"
@@ -71,4 +82,4 @@ if ($errors.Count -gt 0) {
     exit 1
 }
 
-Write-Output 'Validated 6 skill packages, their shared resources, and Shipmate branding.'
+Write-Output 'Validated 6 skill packages, 17 translations, shared resources, and Shipmate branding.'
