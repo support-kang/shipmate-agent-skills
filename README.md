@@ -38,8 +38,8 @@ Install Shipmate from https://github.com/support-kang/shipmate-agent-skills into
    On Windows, run: .\scripts\install.ps1 -Platform <platform>
 4. If the destination already contains these Shipmate skills, update only those exact directories with --force on macOS/Linux or -Force on Windows. Never overwrite unrelated skill directories.
 5. Verify that both shipmate and shipmate-setup were installed in the selected agent's user-level skills directory.
-6. Do not run shipmate-setup and do not modify the current project during installation.
-7. Report the detected platform, installed paths, and verification result, then remind me to start a fresh agent session.
+6. Do not run shipmate-setup and do not modify the current project as part of the installation itself.
+7. Report the detected platform, installed paths, and verification result. Then instruct me to start a fresh agent session in the target project and run shipmate-setup exactly once for that project. After setup, use shipmate for development tasks.
 ```
 
 ### macOS/Linux
@@ -80,7 +80,9 @@ Or install into a specific repository:
 .\scripts\install.ps1 -Platform codex -Scope project -ProjectPath C:\path\to\project
 ```
 
-Then start a fresh agent session. Run `shipmate-setup` once in a project, and use `shipmate` for subsequent development work.
+### After installation
+
+Start a fresh agent session in the target project and run `shipmate-setup` exactly once for that project. After the one-time setup, use `shipmate` for subsequent development work; do not repeat setup for every task.
 
 ## Repository layout
 
@@ -172,4 +174,4 @@ Windows:
 .\scripts\install.ps1 -Platform codex
 ```
 
-설치 후 에이전트를 새 세션으로 시작하고, 대상 프로젝트에서 먼저 `shipmate-setup`을 실행하세요. 이후 개발 작업부터는 `shipmate`를 사용하면 됩니다.
+설치 후 대상 프로젝트에서 에이전트를 새 세션으로 시작하고, 해당 프로젝트에 `shipmate-setup`을 정확히 한 번만 실행하세요. 일회성 설정이 끝난 뒤에는 작업마다 설정을 반복하지 말고 `shipmate`를 사용하면 됩니다.
