@@ -22,6 +22,16 @@ Karpathy Guidelines의 신중한 계획·검증 원칙과 Ponytail의 YAGNI·최
 
 빠른 설치:
 
+macOS/Linux:
+
+```bash
+./scripts/install.sh cursor
+./scripts/install.sh claude-code
+./scripts/install.sh codex
+```
+
+Windows:
+
 ```powershell
 .\scripts\install.ps1 -Platform cursor
 .\scripts\install.ps1 -Platform claude-code
@@ -61,11 +71,33 @@ shared/
   workflow.md
   docs-template/
 scripts/
+  install.sh
   install.ps1
+  sync-packages.sh
+  sync-packages.ps1
+  validate.sh
   validate.ps1
 ```
 
 ## Install
+
+### macOS/Linux
+
+Install both skills for one host into your user profile:
+
+```bash
+./scripts/install.sh cursor
+./scripts/install.sh claude-code
+./scripts/install.sh codex
+```
+
+Or install into a specific repository:
+
+```bash
+./scripts/install.sh codex --scope project --project-path /path/to/project
+```
+
+### Windows
 
 Install both skills for one host into your user profile:
 
