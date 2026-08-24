@@ -23,6 +23,65 @@ One development workflow for Cursor, Claude Code, and Codex:
 
 The workflow combines Karpathy-inspired caution and goal-driven verification with Ponytail-inspired simplicity and YAGNI. It is an original orchestration layer; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution and licensing details.
 
+## Install
+
+### Install with an AI agent
+
+Copy and paste this instruction into Cursor, Claude Code, or Codex:
+
+```text
+Install Shipmate from https://github.com/support-kang/shipmate-agent-skills into my user profile.
+
+1. Detect whether you are currently running in Cursor, Claude Code, or Codex, and select exactly one matching platform value: cursor, claude-code, or codex.
+2. Detect the operating system. Clone the repository into a temporary or dedicated tools directory. If a clean clone already exists, update it with a safe fast-forward pull; do not overwrite unrelated local changes.
+3. On macOS/Linux, run: ./scripts/install.sh <platform>
+   On Windows, run: .\scripts\install.ps1 -Platform <platform>
+4. If the destination already contains these Shipmate skills, update only those exact directories with --force on macOS/Linux or -Force on Windows. Never overwrite unrelated skill directories.
+5. Verify that both shipmate and shipmate-setup were installed in the selected agent's user-level skills directory.
+6. Do not run shipmate-setup and do not modify the current project during installation.
+7. Report the detected platform, installed paths, and verification result, then remind me to start a fresh agent session.
+```
+
+### macOS/Linux
+
+Clone the repository, then install both skills for the host you use:
+
+```bash
+git clone https://github.com/support-kang/shipmate-agent-skills.git
+cd shipmate-agent-skills
+# Run exactly one of the following:
+./scripts/install.sh cursor
+./scripts/install.sh claude-code
+./scripts/install.sh codex
+```
+
+Or install into a specific repository:
+
+```bash
+./scripts/install.sh codex --scope project --project-path /path/to/project
+```
+
+### Windows
+
+Clone the repository, then install both skills for the host you use:
+
+```powershell
+git clone https://github.com/support-kang/shipmate-agent-skills.git
+Set-Location shipmate-agent-skills
+# Run exactly one of the following:
+.\scripts\install.ps1 -Platform cursor
+.\scripts\install.ps1 -Platform claude-code
+.\scripts\install.ps1 -Platform codex
+```
+
+Or install into a specific repository:
+
+```powershell
+.\scripts\install.ps1 -Platform codex -Scope project -ProjectPath C:\path\to\project
+```
+
+Then start a fresh agent session. Run `shipmate-setup` once in a project, and use `shipmate` for subsequent development work.
+
 ## Repository layout
 
 ```text
@@ -51,42 +110,6 @@ scripts/
   validate.sh
   validate.ps1
 ```
-
-## Install
-
-### macOS/Linux
-
-Install both skills for one host into your user profile:
-
-```bash
-./scripts/install.sh cursor
-./scripts/install.sh claude-code
-./scripts/install.sh codex
-```
-
-Or install into a specific repository:
-
-```bash
-./scripts/install.sh codex --scope project --project-path /path/to/project
-```
-
-### Windows
-
-Install both skills for one host into your user profile:
-
-```powershell
-.\scripts\install.ps1 -Platform cursor
-.\scripts\install.ps1 -Platform claude-code
-.\scripts\install.ps1 -Platform codex
-```
-
-Or install into a specific repository:
-
-```powershell
-.\scripts\install.ps1 -Platform codex -Scope project -ProjectPath C:\path\to\project
-```
-
-Then start a fresh agent session. Run `shipmate-setup` once in a project, and use `shipmate` for subsequent development work.
 
 ## Project documentation created by setup
 
