@@ -14,7 +14,6 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repoRoot = Split-Path -Parent $PSScriptRoot
-& (Join-Path $PSScriptRoot 'sync-packages.ps1')
 
 if ($Scope -eq 'user') {
     $destinationRoot = switch ($Platform) {

@@ -1,8 +1,0 @@
-interface:
-  display_name: "Shipmate"
-  short_description: "Plan, TDD, review, ship, and babysit a PR"
-  icon_small: "./assets/shipmate-logo.png"
-  icon_large: "./assets/shipmate-logo.png"
-  default_prompt: "Use $shipmate to take this development task through a merge-ready pull request."
-policy:
-  allow_implicit_invocation: true

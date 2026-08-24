@@ -3,41 +3,40 @@ set -euo pipefail
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 repo_root="$(cd "$script_dir/.." && pwd -P)"
-"$script_dir/sync-packages.sh"
-
 errors=0
 
 require_file() {
-  if [[ ! -f "$1" ]]; then
-    printf 'Missing required file: %s\n' "$1" >&2
+  if [[ ! -f "$repo_root/$1" ]]; then
+    printf 'Missing required file: %s\n' "$repo_root/$1" >&2
     errors=$((errors + 1))
   fi
 }
 
-for legal_file in \
+for required_file in \
   LICENSE \
   THIRD_PARTY_NOTICES.md \
   third_party/ponytail/LICENSE \
-  third_party/karpathy-guidelines/NOTICE.md; do
-  require_file "$repo_root/$legal_file"
-done
-
-for logo_file in \
+  third_party/karpathy-guidelines/NOTICE.md \
   assets/shipmate-logo.png \
+  skills/shipmate/references/workflow.md \
+  skills/shipmate/agents/openai.yaml \
   skills/shipmate/assets/shipmate-logo.png \
-  skills/shipmate-setup/assets/shipmate-logo.png \
-  packages/codex/shipmate/assets/shipmate-logo.png \
-  packages/codex/shipmate-setup/assets/shipmate-logo.png; do
-  require_file "$repo_root/$logo_file"
-done
-
-for locale in ar de es fr hi id it ja pl pt-BR ru th tr uk vi zh-CN zh-TW; do
-  require_file "$repo_root/docs/i18n/README.$locale.md"
+  skills/shipmate-setup/assets/AGENTS.block.md \
+  skills/shipmate-setup/assets/docs-template/README.md \
+  skills/shipmate-setup/assets/docs-template/features/README.md \
+  skills/shipmate-setup/assets/docs-template/plans/README.md \
+  skills/shipmate-setup/assets/docs-template/decisions/README.md \
+  skills/shipmate-setup/assets/docs-template/runbooks/README.md \
+  skills/shipmate-setup/assets/docs-template/reference/README.md \
+  skills/shipmate-setup/assets/docs-template/reference/testing.md \
+  skills/shipmate-setup/agents/openai.yaml \
+  skills/shipmate-setup/assets/shipmate-logo.png; do
+  require_file "$required_file"
 done
 
 for skill_name in shipmate-setup shipmate; do
   skill_file="$repo_root/skills/$skill_name/SKILL.md"
-  require_file "$skill_file"
+  require_file "skills/$skill_name/SKILL.md"
   if [[ -f "$skill_file" ]]; then
     grep -q "^name: $skill_name$" "$skill_file" || {
       printf 'Invalid canonical skill name in %s\n' "$skill_file" >&2
@@ -54,49 +53,14 @@ for skill_name in shipmate-setup shipmate; do
   fi
 done
 
-for canonical_resource in \
-  skills/shipmate/references/workflow.md \
-  skills/shipmate/agents/openai.yaml \
-  skills/shipmate-setup/assets/AGENTS.block.md \
-  skills/shipmate-setup/assets/docs-template/README.md \
-  skills/shipmate-setup/assets/docs-template/reference/testing.md \
-  skills/shipmate-setup/agents/openai.yaml; do
-  require_file "$repo_root/$canonical_resource"
-done
-
-for platform in cursor claude-code codex; do
-  for skill_name in shipmate-setup shipmate; do
-    skill_root="$repo_root/packages/$platform/$skill_name"
-    skill_file="$skill_root/SKILL.md"
-    require_file "$skill_file"
-    if [[ -f "$skill_file" ]]; then
-      grep -q "^name: $skill_name$" "$skill_file" || {
-        printf 'Invalid skill name in %s\n' "$skill_file" >&2
-        errors=$((errors + 1))
-      }
-      grep -q '^description: .' "$skill_file" || {
-        printf 'Missing skill description in %s\n' "$skill_file" >&2
-        errors=$((errors + 1))
-      }
-      if grep -Eq 'TODO|PLACEHOLDER' "$skill_file"; then
-        printf 'Unfinished placeholder in %s\n' "$skill_file" >&2
-        errors=$((errors + 1))
-      fi
-    fi
-  done
-
-  require_file "$repo_root/packages/$platform/shipmate/references/workflow.md"
-  require_file "$repo_root/packages/$platform/shipmate-setup/assets/AGENTS.block.md"
-  require_file "$repo_root/packages/$platform/shipmate-setup/assets/docs-template/README.md"
-  require_file "$repo_root/packages/$platform/shipmate-setup/assets/docs-template/reference/testing.md"
-done
-
-agents_block="$repo_root/shared/AGENTS.block.md"
-start_count="$(grep -c '<!-- shipmate:start -->' "$agents_block" || true)"
-end_count="$(grep -c '<!-- shipmate:end -->' "$agents_block" || true)"
-if [[ "$start_count" -ne 1 || "$end_count" -ne 1 ]]; then
-  printf '%s\n' 'The AGENTS managed block must contain exactly one start and one end marker.' >&2
-  errors=$((errors + 1))
+agents_block="$repo_root/skills/shipmate-setup/assets/AGENTS.block.md"
+if [[ -f "$agents_block" ]]; then
+  start_count="$(grep -c '<!-- shipmate:start -->' "$agents_block" || true)"
+  end_count="$(grep -c '<!-- shipmate:end -->' "$agents_block" || true)"
+  if [[ "$start_count" -ne 1 || "$end_count" -ne 1 ]]; then
+    printf '%s\n' 'The AGENTS managed block must contain exactly one start and one end marker.' >&2
+    errors=$((errors + 1))
+  fi
 fi
 
 if [[ "$errors" -ne 0 ]]; then
@@ -104,4 +68,4 @@ if [[ "$errors" -ne 0 ]]; then
   exit 1
 fi
 
-printf '%s\n' 'Validated 2 canonical skills, 6 compatibility packages, 17 translations, shared resources, and Shipmate branding.'
+printf '%s\n' 'Validated the 2 canonical Shipmate skills and their required resources.'
