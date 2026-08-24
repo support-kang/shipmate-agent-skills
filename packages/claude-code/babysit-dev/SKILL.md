@@ -1,0 +1,12 @@
+---
+name: babysit-dev
+description: Run a development task from an approved plan through slice commits, documentation, independent adversarial review, final PR creation, and post-PR babysitting. Use for the full Claude Code development workflow.
+---
+
+# Babysit Dev for Claude Code
+
+Read [references/workflow.md](references/workflow.md) completely and follow it as the authoritative protocol.
+
+Enter Claude Code's plan workflow when available, while keeping `docs/plans/<task-slug>.md` as the durable source of truth. Delegate adversarial review to a fresh read-only subagent that did not implement the change.
+
+At the start, state the detected workflow state and what evidence advances it. Explicit invocation with an end-to-end development request authorizes scoped local commits. Push and PR creation require either explicit authorization in that request or a confirmation immediately before shipping. Never merge.

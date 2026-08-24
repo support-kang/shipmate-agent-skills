@@ -1,0 +1,6 @@
+interface:
+  display_name: "Babysit Setup"
+  short_description: "Initialize Babysit project docs and agent rules"
+  default_prompt: "Use $babysit-setup to initialize this repository for Babysit Dev."
+policy:
+  allow_implicit_invocation: true

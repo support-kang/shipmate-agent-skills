@@ -1,0 +1,6 @@
+interface:
+  display_name: "Babysit Dev"
+  short_description: "Plan, implement, review, ship, and babysit a PR"
+  default_prompt: "Use $babysit-dev to take this development task through a merge-ready pull request."
+policy:
+  allow_implicit_invocation: true
