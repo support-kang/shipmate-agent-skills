@@ -18,6 +18,8 @@ It is deliberately boring. There are no workflow presets, modes, step toggles, o
 npx skills add support-kang/shipmate-agent-skills
 ```
 
+[한국어](#한국어)
+
 ## The workflow
 
 Shipmate requires the agent to:
@@ -119,6 +121,38 @@ Cursor and Claude Code receive a thin pointer to the shared project contract whe
 ## Safety boundary
 
 An explicitly authorized end-to-end Shipmate run may create local commits, push its task branch, and open a pull request. Shipmate does not force-push, use destructive Git operations, or merge.
+
+## 한국어
+
+Shipmate는 계획, TDD, 문서화, 적대적 리뷰, PR 모니터링을 하나의 흐름으로 연결해 효율적이고 신뢰할 수 있는 AI 기반 개발을 돕는 멀티 에이전트 워크플로 스킬입니다. 구현을 바로 시작하는 대신 계획과 승인부터 출발하고, RED → GREEN → REFACTOR의 TDD 사이클, 작은 단위의 커밋과 문서 갱신, 독립적인 적대적 리뷰를 거친 뒤 모든 로컬 검증이 끝났을 때만 PR을 생성합니다.
+
+두 개의 스킬로 구성됩니다.
+
+- `shipmate-setup`: 프로젝트에 처음 한 번 실행합니다. 최상단 `AGENTS.md`의 공통 작업 규칙과 문서 구조를 만들고, 기존 테스트 프레임워크·테스트 위치·실행 명령을 탐지해 `docs/reference/testing.md`에 기록합니다.
+- `shipmate`: 실제 개발 작업에 사용합니다. 계획 승인 → RED/GREEN/REFACTOR → 구현 슬라이스와 원자적 커밋 → 문서 갱신 → 독립 리뷰 에이전트의 적대적 검토 → 수정 및 최종 검증 → PR 생성 → CI와 리뷰 피드백 관찰 순서로 진행합니다.
+
+```text
+SETUP → PLAN → PLAN GATE → RED → GREEN → REFACTOR → DOCUMENT
+      → ADVERSARIAL REVIEW → LOCAL GATE → PR → BABYSIT → MERGE-READY
+```
+
+PR 생성은 로컬 개발 과정의 마지막 단계입니다. PR이 생성된 뒤에는 새 PR을 만들지 않고 해당 PR의 CI, 충돌, 리뷰 의견을 추적합니다. Shipmate는 merge-ready 상태까지만 책임지며, 별도의 명시적인 요청 없이는 병합하지 않습니다.
+
+Shipmate는 범용 에이전트 프레임워크나 workflow builder가 아닙니다. 여러 preset, mode, 단계별 설정을 제공하지 않습니다. 이 workflow가 맞으면 그대로 사용하고, 맞지 않으면 fork하거나 직접 workflow를 관리하는 것을 전제로 합니다.
+
+가장 간단한 설치 방법:
+
+```bash
+npx skills add support-kang/shipmate-agent-skills
+```
+
+사용자 프로필 전체에 설치하려면 `-g`를 추가하세요.
+
+```bash
+npx skills add support-kang/shipmate-agent-skills -g
+```
+
+설치 후 대상 프로젝트에서 에이전트를 새 세션으로 시작하고, 해당 프로젝트에 `shipmate-setup`을 정확히 한 번만 실행하세요. 일회성 설정이 끝난 뒤에는 작업마다 설정을 반복하지 말고 `shipmate`를 사용하면 됩니다.
 
 ## License and acknowledgements
 
