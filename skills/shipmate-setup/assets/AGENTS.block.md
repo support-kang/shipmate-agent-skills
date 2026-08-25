@@ -12,6 +12,7 @@ For development tasks:
 - Do not weaken tests to reach GREEN or add a new test framework without explicit approval. Record justified TDD exceptions and the replacement verification in the task plan.
 - Keep `docs/features/`, `docs/plans/`, `docs/decisions/`, `docs/runbooks/`, and `docs/reference/` accurate for the areas affected.
 - Plan non-trivial work before implementation and use coherent, independently verifiable slice commits.
+- Record shipping in the task plan: target branch and remote, slice commits, push, and PR creation. An approved plan authorizes those actions unless the user explicitly excludes one.
 - Before pushing, run relevant checks and obtain a fresh independent adversarial review of the plan and branch diff.
 - Create the pull request only after implementation, documentation, review fixes, and the local verification gate are complete.
 - After the PR exists, babysit CI and review feedback until merge-ready. Never merge without a separate explicit request.

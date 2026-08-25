@@ -18,4 +18,4 @@ Preserve the same gates while using the current agent's native mechanics:
 
 In every host, keep `docs/plans/<task-slug>.md` as the durable source of truth. When a native planning surface is unavailable, write the durable plan and stop at the same approval gate without claiming that the host changed modes.
 
-At the start, state the detected workflow state and what evidence advances it. Explicit invocation with an end-to-end development request authorizes scoped local commits. Push and PR creation require either explicit authorization in that request or confirmation immediately before shipping. Never merge.
+At the start, state the detected workflow state and what evidence advances it. An approved plan authorizes the shipping actions recorded in it: slice commits, push, and PR creation. Do not ask again for push or PR confirmation after approval unless the user explicitly excluded those actions in the plan. Never merge.

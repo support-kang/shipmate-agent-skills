@@ -31,6 +31,7 @@ Inspect repository instructions, relevant documentation, current branch, working
 - implementation slices, each independently understandable and verifiable;
 - a TDD test plan naming the first failing test and the focused command for each behavior-changing slice;
 - planned commit boundaries;
+- shipping: target branch and remote, slice commits, push, and PR creation; default to automatic unless the user explicitly excludes an item in the plan;
 - verification commands;
 - documentation impact;
 - risks and rollback notes when relevant.
@@ -39,7 +40,7 @@ Use the host's native plan mode when it is available. Do not claim the UI mode c
 
 ### PLAN_GATE
 
-For an interactive request, present the plan and stop for approval before changing product code. A user instruction that explicitly approves execution, such as “go ahead” or “run shipmate end to end,” satisfies this gate. Material scope changes return to PLAN.
+For an interactive request, present the plan and stop for approval before changing product code. A user instruction that explicitly approves execution, such as “go ahead” or “run shipmate end to end,” satisfies this gate and authorizes the shipping actions recorded in the plan. Do not ask again for push or PR confirmation after approval unless the user explicitly excluded those actions in the plan. Material scope changes return to PLAN.
 
 ### IMPLEMENT
 
@@ -89,9 +90,9 @@ Run the strongest relevant local checks available: the RED/GREEN evidence for ne
 
 ### PR
 
-PR creation is the last construction step. Only after PLAN through LOCAL_GATE are complete:
+PR creation is the last construction step. Only after PLAN through LOCAL_GATE are complete, proceed without a separate shipping confirmation when the approved plan includes push and PR creation:
 
-1. Confirm the target branch and remote.
+1. Confirm the target branch and remote from the plan.
 2. Push the current task branch without force.
 3. Open one pull request using the repository template when present.
 4. Include purpose, slices/commits, verification evidence, documentation changes, risks, and any explicitly accepted residuals.
