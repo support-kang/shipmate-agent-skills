@@ -34,7 +34,8 @@ Inspect repository instructions, relevant documentation, current branch, working
 - shipping: target branch and remote, slice commits, push, and PR creation; default to automatic unless the user explicitly excludes an item in the plan;
 - verification commands;
 - documentation impact;
-- risks and rollback notes when relevant.
+- risks and rollback notes when relevant;
+- stop conditions: inherit the protocol defaults below and add task-specific cases that require developer intervention; when none apply beyond the defaults, state that explicitly.
 
 Use the host's native plan mode when it is available. Do not claim the UI mode changed when it did not. The durable plan file is authoritative.
 
@@ -56,6 +57,8 @@ Implement one coherent slice at a time. For each slice:
 Do not weaken a test merely to make GREEN. Prefer observable behavior over private implementation details, and do not mock away the behavior under test. Do not split commits by arbitrary file count. A slice commit represents one reviewable reason for change and must not intentionally leave the branch red. Do not rewrite, squash, or force-push existing user commits without explicit authorization.
 
 TDD is required for behavior-changing code. Documentation-only edits, non-executable metadata, and generated artifacts may use an explicit exception. If a legacy area has no usable test harness, record the gap and reason in the plan, obtain approval before adding a new dependency or broad framework, and use the smallest executable regression check available.
+
+During IMPLEMENT and every later stage, stop and ask for direction when a recorded stop condition is met. Do not bypass it to keep shipping.
 
 ### DOCUMENT
 
@@ -113,4 +116,6 @@ Report the PR as merge-ready. Merging requires a separate explicit user request.
 
 ## Stop conditions
 
-Stop and ask for direction when requirements materially conflict, a destructive migration lacks authorization, secrets or credentials are required, the target branch is unclear at shipping time, independent review is unavailable, or a material finding cannot be resolved safely.
+These defaults apply to every task. Each plan must inherit them and add task-specific cases that require developer intervention.
+
+Stop and ask for direction when requirements materially conflict, a destructive migration lacks authorization, secrets or credentials are required, the target branch is unclear at shipping time, independent review is unavailable, a material finding cannot be resolved safely, or a recorded plan stop condition is met. Do not bypass a stop condition to keep shipping.
