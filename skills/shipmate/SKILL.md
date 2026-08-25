@@ -20,4 +20,4 @@ In every host, keep `docs/plans/<task-slug>.md` as the durable source of truth. 
 
 At the start, state the detected workflow state and what evidence advances it. An approved plan authorizes the shipping actions recorded in it: slice commits, push, and PR creation. Do not ask again for push or PR confirmation after approval unless the user explicitly excluded those actions in the plan. Never merge.
 
-Record stop conditions in every task plan: inherit the protocol defaults and add task-specific cases that require developer intervention. When a recorded stop condition is met during execution, stop and ask for direction instead of bypassing it to keep shipping.
+Record stop conditions in every task plan: inherit the protocol defaults and add task-specific cases that require developer intervention. When any stop condition applies during execution, stop and ask for direction instead of bypassing it to keep shipping. Stop conditions override shipping authorization.

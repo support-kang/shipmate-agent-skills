@@ -24,7 +24,7 @@ npx skills add support-kang/shipmate-agent-skills
 
 Shipmate requires the agent to:
 
-1. Inspect the repository, write a durable plan, and obtain approval before implementation.
+1. Inspect the repository, write a durable plan with stop conditions, and obtain approval before implementation.
 2. Develop behavior changes test-first with RED → GREEN → REFACTOR.
 3. Commit small, coherent slices that keep the branch green.
 4. Update affected project documentation before shipping.

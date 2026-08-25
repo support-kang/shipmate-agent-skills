@@ -27,6 +27,23 @@ Task plans did not require explicit stop conditions, so agents could keep shippi
 - [x] Setup template, AGENTS contract, and README match the protocol
 - [x] `scripts/validate.ps1` passes
 
+## Assumptions and open questions
+
+None.
+
+## TDD test plan
+
+Docs-only exception. Verification uses `scripts/validate.ps1`.
+
+## Planned commit boundaries
+
+1. Protocol slice
+2. Documentation slice
+
+## Risks and rollback
+
+Low risk documentation change. Revert the branch if the wording is rejected.
+
 ## Slices
 
 1. Protocol updates in `skills/shipmate/references/workflow.md` and `skills/shipmate/SKILL.md`
