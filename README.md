@@ -120,11 +120,11 @@ Cursor and Claude Code receive a thin pointer to the shared project contract whe
 
 ## Safety boundary
 
-An explicitly authorized end-to-end Shipmate run may create local commits, push its task branch, and open a pull request. Shipmate does not force-push, use destructive Git operations, or merge.
+An approved Shipmate plan authorizes the shipping actions recorded in it: slice commits, push, and pull request creation. Shipmate does not force-push, use destructive Git operations, or merge.
 
 ## 한국어
 
-Shipmate는 계획, TDD, 문서화, 적대적 리뷰, PR 모니터링을 하나의 흐름으로 연결해 효율적이고 신뢰할 수 있는 AI 기반 개발을 돕는 멀티 에이전트 워크플로 스킬입니다. 구현을 바로 시작하는 대신 계획과 승인부터 출발하고, RED → GREEN → REFACTOR의 TDD 사이클, 작은 단위의 커밋과 문서 갱신, 독립적인 적대적 리뷰를 거친 뒤 모든 로컬 검증이 끝났을 때만 PR을 생성합니다.
+Shipmate는 계획, TDD, 문서화, 적대적 리뷰, PR 모니터링을 하나의 흐름으로 연결해 효율적이고 신뢰할 수 있는 AI 기반 개발을 돕는 멀티 에이전트 워크플로 스킬입니다. 구현을 바로 시작하는 대신 계획과 승인부터 출발하고, RED → GREEN → REFACTOR의 TDD 사이클, 작은 단위의 커밋과 문서 갱신, 독립적인 적대적 리뷰를 거친 뒤 모든 로컬 검증이 끝났을 때 PR을 생성합니다. 계획에 shipping이 포함되어 있으면 승인 후 푸시와 PR 생성을 다시 묻지 않습니다.
 
 두 개의 스킬로 구성됩니다.
 
