@@ -2,7 +2,7 @@
 
 ## Status
 
-Approved.
+Complete.
 
 ## Problem and outcome
 
@@ -23,12 +23,12 @@ AI pull requests force reviewers to reconstruct intent from the diff. Shipmate a
 
 ## Acceptance criteria
 
-- [ ] Each slice commit records a short packet in `docs/plans/<task-slug>.md`: intent, changed behavior, why, review hotspots, verification, residual uncertainty
-- [ ] Packets are not rewritten later; the PR copies them as recorded and prefixes each with its commit SHA
-- [ ] Independent review treats packets as a map, not proof, and treats packet/diff mismatch as a finding
-- [ ] Follow-up BABYSIT commits use the same packet
-- [ ] Setup template, AGENTS contract, and README match the protocol
-- [ ] `scripts/validate.ps1` passes
+- [x] Each slice commit records a short packet in `docs/plans/<task-slug>.md`: intent, changed behavior, why, review hotspots, verification, residual uncertainty
+- [x] Packets are not rewritten later; the PR copies them as recorded and prefixes each with its commit SHA
+- [x] Independent review treats packets as a map, not proof, and treats packet/diff mismatch as a finding
+- [x] Follow-up BABYSIT commits use the same packet
+- [x] Setup template, AGENTS contract, and README match the protocol
+- [x] `scripts/validate.ps1` passes
 
 ## Assumptions and open questions
 
@@ -71,6 +71,8 @@ Protocol defaults apply. For this task, stop and ask for direction if:
 powershell -ExecutionPolicy Bypass -File scripts/validate.ps1
 ```
 
+Result: passed.
+
 ## Slices
 
 ### Slice: protocol
@@ -83,10 +85,19 @@ powershell -ExecutionPolicy Bypass -File scripts/validate.ps1
 - Unsure: none
 
 ### Slice: documentation
+- SHA: `558576f`
 - Intent: make consumer-facing docs match the packet protocol
 - Changed: `skills/shipmate-setup/assets/AGENTS.block.md`, `skills/shipmate-setup/assets/docs-template/plans/README.md`, `README.md`, this plan — contract, plan template, and workflow list now require packets and copy-as-recorded PRs
 - Why this: agents in consumer repos read AGENTS and the plan template, not only `workflow.md`; skipped i18n README copies and a new `features/` page
 - Look here: AGENTS slice-commit bullet; plans README copy rule; README steps 3 and 6
+- Verified: `powershell -ExecutionPolicy Bypass -File scripts/validate.ps1`
+- Unsure: none
+
+### Slice: plan evidence
+- Intent: add commit SHAs, verification result, and final status without rewriting packets
+- Changed: `docs/plans/slice-review-packets.md` — SHAs, checkboxes, validation result
+- Why this: DOCUMENT may add SHAs and status only; skipped a new summary of the work
+- Look here: SHA lines stay additive; packet bodies unchanged
 - Verified: `powershell -ExecutionPolicy Bypass -File scripts/validate.ps1`
 - Unsure: none
 
