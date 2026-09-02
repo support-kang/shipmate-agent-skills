@@ -101,6 +101,20 @@ Result: passed.
 - Verified: `powershell -ExecutionPolicy Bypass -File scripts/validate.ps1`
 - Unsure: none
 
+### Slice: review-fix packet lifetime
+- Intent: make later commits record a new packet in the same format, after verification
+- Changed: `skills/shipmate/references/workflow.md`, `skills/shipmate-setup/assets/AGENTS.block.md`, `README.md` — review fixes and BABYSIT write a new packet; Korean intro mentions packets
+- Why this: “the same packet” was readable as reuse; skipped rewriting the protocol slice packet
+- Look here: IMPLEMENT “new packet for later commits”; BABYSIT order (verify then packet); AGENTS babysit bullet; Korean intro
+- Verified: `powershell -ExecutionPolicy Bypass -File scripts/validate.ps1`
+- Unsure: none
+
+## Review triage
+
+- Finding 1 (protocol packet omits the plan file in `bb6be18`): invalid. The plan file is the packet store and is included in every slice commit by IMPLEMENT step 6. Listing it in Changed on every packet would be noise. Changed names the slice's product or docs change.
+- Finding 2 (later commits need a new packet; BABYSIT wording and order): valid. Fixed in this slice.
+- Finding 3 (Korean README intro omitted packets): valid. Fixed in this slice.
+
 ## Documentation impact
 
 - `skills/shipmate/references/workflow.md`

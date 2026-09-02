@@ -66,7 +66,7 @@ Write the packet while the slice context is fresh. Keep it to one screen. Do not
 - Verified: commands and results;
 - Unsure: residual uncertainty; omit if none.
 
-The packet is a map for reviewers, not a substitute for reading the diff. Do not rewrite a recorded packet later. If the commit SHA is unknown at write time, add it later from `git log` without otherwise changing the packet.
+The packet is a map for reviewers, not a substitute for reading the diff. Do not rewrite a recorded packet later. If the commit SHA is unknown at write time, add it later from `git log` without otherwise changing the packet. Record a new packet in this format for every later commit that changes the work, including review fixes and BABYSIT fixes. Do not reuse an earlier packet as the record of a later commit. Write the packet after that commit's verification and immediately before committing.
 
 TDD is required for behavior-changing code. Documentation-only edits, non-executable metadata, and generated artifacts may use an explicit exception. If a legacy area has no usable test harness, record the gap and reason in the plan, obtain approval before adding a new dependency or broad framework, and use the smallest executable regression check available.
 
@@ -97,7 +97,7 @@ Before any push or pull request, delegate the branch diff, plan, and slice revie
 
 Each finding must include severity, evidence, affected location, failure scenario, and a concrete recommendation. Reject vague style preferences.
 
-Triage every finding as `valid`, `invalid`, or `needs-clarification`. Fix valid findings in new focused commits, record the reason for rejected findings, and send changed areas through one fresh review pass. Stop after two fix/re-review rounds unless the user authorizes more; unresolved material findings block the PR.
+Triage every finding as `valid`, `invalid`, or `needs-clarification`. Fix valid findings in new focused commits that include a new slice review packet, record the reason for rejected findings, and send changed areas through one fresh review pass. Stop after two fix/re-review rounds unless the user authorizes more; unresolved material findings block the PR.
 
 ### LOCAL_GATE
 
@@ -119,7 +119,7 @@ Never merge. Do not open a draft or stacked PR unless requested.
 After the PR exists, monitor checks, mergeability, and review threads. This phase does not create another PR.
 
 - Triage reviewer comments against the actual code before changing anything.
-- For valid comments, make a focused fix, record the same slice review packet in the plan, update affected docs, run verification, obtain an independent review of the delta, commit, and push.
+- For valid comments, make a focused fix, update affected docs, run verification, record a new slice review packet in the same format, obtain an independent review of the delta, commit, and push.
 - Explain evidence when a comment is invalid; ask a specific question when clarification is needed.
 - Diagnose CI failures before retrying. Retry a likely transient failure once. Repeated or material failures require a fix or user decision.
 - Stop at merge-ready: required checks green, no conflicts, and every material thread resolved or clearly answered.

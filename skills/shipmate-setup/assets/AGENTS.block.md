@@ -16,7 +16,7 @@ For development tasks:
 - Record stop conditions in the task plan: inherit the protocol defaults and add task-specific cases that require developer intervention. When any stop condition applies, stop and ask for direction instead of bypassing it to keep shipping. Stop conditions override shipping authorization.
 - Before pushing, run relevant checks and obtain a fresh independent adversarial review of the plan, slice review packets, and branch diff.
 - Create the pull request only after implementation, documentation, review fixes, and the local verification gate are complete.
-- After the PR exists, babysit CI and review feedback until merge-ready. Never merge without a separate explicit request.
+- After the PR exists, babysit CI and review feedback until merge-ready. Record a new slice review packet in the same format for each follow-up commit. Never merge without a separate explicit request.
 
 Do not use destructive Git operations or force-push unless the user explicitly authorizes the exact action.
 <!-- shipmate:end -->
