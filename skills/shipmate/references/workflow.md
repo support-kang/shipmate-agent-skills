@@ -119,7 +119,7 @@ Never merge. Do not open a draft or stacked PR unless requested.
 After the PR exists, monitor checks, mergeability, and review threads. This phase does not create another PR.
 
 - Triage reviewer comments against the actual code before changing anything.
-- For valid comments, make a focused fix, update affected docs, run verification, record a new slice review packet in the same format, obtain an independent review of the delta, commit, and push.
+- For valid comments, make a focused fix, update affected docs, run verification, obtain an independent review of the delta, record a new slice review packet in the same format, commit, and push.
 - Explain evidence when a comment is invalid; ask a specific question when clarification is needed.
 - Diagnose CI failures before retrying. Retry a likely transient failure once. Repeated or material failures require a fix or user decision.
 - Stop at merge-ready: required checks green, no conflicts, and every material thread resolved or clearly answered.

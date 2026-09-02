@@ -26,7 +26,7 @@ AI pull requests force reviewers to reconstruct intent from the diff. Shipmate a
 - [x] Each slice commit records a short packet in `docs/plans/<task-slug>.md`: intent, changed behavior, why, review hotspots, verification, residual uncertainty
 - [x] Packets are not rewritten later; the PR copies them as recorded and prefixes each with its commit SHA
 - [x] Independent review treats packets as a map, not proof, and treats packet/diff mismatch as a finding
-- [x] Follow-up BABYSIT commits use the same packet
+- [x] Follow-up BABYSIT and review-fix commits record a new packet in the same format
 - [x] Setup template, AGENTS contract, and README match the protocol
 - [x] `scripts/validate.ps1` passes
 
@@ -109,11 +109,21 @@ Result: passed.
 - Verified: `powershell -ExecutionPolicy Bypass -File scripts/validate.ps1`
 - Unsure: none
 
+### Slice: review-fix packet order and AC
+- Intent: align the plan AC and BABYSIT order with “new packet immediately before commit”
+- Changed: `docs/plans/slice-review-packets.md`, `skills/shipmate/references/workflow.md` — AC now requires a new packet; BABYSIT is verify → delta review → packet → commit
+- Why this: AC still said “same packet”, and a packet written before the delta review would drift if the review changed the tree
+- Look here: acceptance criteria follow-up line; BABYSIT bullet order
+- Verified: `powershell -ExecutionPolicy Bypass -File scripts/validate.ps1`
+- Unsure: none
+
 ## Review triage
 
 - Finding 1 (protocol packet omits the plan file in `bb6be18`): invalid. The plan file is the packet store and is included in every slice commit by IMPLEMENT step 6. Listing it in Changed on every packet would be noise. Changed names the slice's product or docs change.
 - Finding 2 (later commits need a new packet; BABYSIT wording and order): valid. Fixed in this slice.
-- Finding 3 (Korean README intro omitted packets): valid. Fixed in this slice.
+- Finding 3 (Korean README intro omitted packets): valid. Fixed in the previous slice.
+- Finding 4 (plan AC still said “same packet”): valid. Fixed in this slice.
+- Finding 5 (BABYSIT recorded the packet before the delta review): valid. Fixed in this slice: verify → delta review → new packet → commit.
 
 ## Documentation impact
 
