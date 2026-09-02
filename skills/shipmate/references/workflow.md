@@ -52,9 +52,21 @@ Implement one coherent slice at a time. For each slice:
 3. **REFACTOR:** Only while green, simplify duplication or naming introduced by the slice. Do not add speculative abstractions. Re-run the focused test after refactoring.
 4. Run the relevant nearby tests to catch regressions.
 5. Inspect the full slice diff for unrelated edits, generated noise, secrets, accidental dependency changes, and tests coupled to implementation details.
-6. Commit the test and implementation together as one green slice using the repository's commit convention.
+6. Record a slice review packet in `docs/plans/<task-slug>.md`, then commit the test, implementation, and packet together as one green slice using the repository's commit convention.
 
 Do not weaken a test merely to make GREEN. Prefer observable behavior over private implementation details, and do not mock away the behavior under test. Do not split commits by arbitrary file count. A slice commit represents one reviewable reason for change and must not intentionally leave the branch red. Do not rewrite, squash, or force-push existing user commits without explicit authorization.
+
+Write the packet while the slice context is fresh. Keep it to one screen. Do not paste transcripts, tool traces, or chain-of-thought. Required fields:
+
+- slice name;
+- Intent: one line for the problem this commit solves;
+- Changed: files and observable behavior;
+- Why this: one or two sentences and the rejected alternative;
+- Look here: review hotspots;
+- Verified: commands and results;
+- Unsure: residual uncertainty; omit if none.
+
+The packet is a map for reviewers, not a substitute for reading the diff. Do not rewrite a recorded packet later. If the commit SHA is unknown at write time, add it later from `git log` without otherwise changing the packet. Record a new packet in this format for every later commit that changes the work, including review fixes and BABYSIT fixes. Do not reuse an earlier packet as the record of a later commit. Write the packet after that commit's verification and immediately before committing.
 
 TDD is required for behavior-changing code. Documentation-only edits, non-executable metadata, and generated artifacts may use an explicit exception. If a legacy area has no usable test harness, record the gap and reason in the plan, obtain approval before adding a new dependency or broad framework, and use the smallest executable regression check available.
 
@@ -65,16 +77,16 @@ During IMPLEMENT and every later stage, stop and ask for direction when any stop
 Before review, update the relevant durable documentation:
 
 - `features/`: behavior, user value, boundaries, and acceptance criteria;
-- `plans/`: actual slices, verification evidence, and final status;
+- `plans/`: actual slices, slice review packets, verification evidence, and final status;
 - `decisions/`: durable choices with alternatives and consequences;
 - `runbooks/`: deploy, operate, troubleshoot, and recover procedures;
 - `reference/`: stable API, schema, configuration, or terminology facts.
 
-Do not create empty or speculative documents. Update only categories affected by the work.
+Do not create empty or speculative documents. Update only categories affected by the work. Do not rewrite slice review packets into a later summary; DOCUMENT may add commit SHAs from `git log` and final status only.
 
 ### ADVERSARIAL_REVIEW
 
-Before any push or pull request, delegate the branch diff and plan to a fresh, independent reviewer context. The reviewer is read-only and assumes the implementation may be wrong. It must challenge:
+Before any push or pull request, delegate the branch diff, plan, and slice review packets to a fresh, independent reviewer context. The reviewer is read-only and assumes the implementation may be wrong. Packets are a map, not proof of correctness; a mismatch between a packet and the diff is a finding. It must challenge:
 
 - requirement and plan compliance;
 - correctness, edge cases, and regressions;
@@ -85,7 +97,7 @@ Before any push or pull request, delegate the branch diff and plan to a fresh, i
 
 Each finding must include severity, evidence, affected location, failure scenario, and a concrete recommendation. Reject vague style preferences.
 
-Triage every finding as `valid`, `invalid`, or `needs-clarification`. Fix valid findings in new focused commits, record the reason for rejected findings, and send changed areas through one fresh review pass. Stop after two fix/re-review rounds unless the user authorizes more; unresolved material findings block the PR.
+Triage every finding as `valid`, `invalid`, or `needs-clarification`. Fix valid findings in new focused commits that include a new slice review packet, record the reason for rejected findings, and send changed areas through one fresh review pass. Stop after two fix/re-review rounds unless the user authorizes more; unresolved material findings block the PR.
 
 ### LOCAL_GATE
 
@@ -98,7 +110,7 @@ PR creation is the last construction step. Only after PLAN through LOCAL_GATE ar
 1. Confirm the target branch and remote from the plan.
 2. Push the current task branch without force.
 3. Open one pull request using the repository template when present.
-4. Include purpose, slices/commits, verification evidence, documentation changes, risks, and any explicitly accepted residuals.
+4. Include purpose, slice review packets copied as recorded (prefix each with its commit SHA from `git log`; do not rewrite), verification evidence, documentation changes, risks, and any explicitly accepted residuals.
 
 Never merge. Do not open a draft or stacked PR unless requested.
 
@@ -107,7 +119,7 @@ Never merge. Do not open a draft or stacked PR unless requested.
 After the PR exists, monitor checks, mergeability, and review threads. This phase does not create another PR.
 
 - Triage reviewer comments against the actual code before changing anything.
-- For valid comments, make a focused fix, update affected docs, run verification, obtain an independent review of the delta, commit, and push.
+- For valid comments, make a focused fix, update affected docs, run verification, obtain an independent review of the delta, record a new slice review packet in the same format, commit, and push.
 - Explain evidence when a comment is invalid; ask a specific question when clarification is needed.
 - Diagnose CI failures before retrying. Retry a likely transient failure once. Repeated or material failures require a fix or user decision.
 - Stop at merge-ready: required checks green, no conflicts, and every material thread resolved or clearly answered.

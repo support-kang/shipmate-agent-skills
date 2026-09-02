@@ -26,10 +26,10 @@ Shipmate requires the agent to:
 
 1. Inspect the repository, write a durable plan with stop conditions, and obtain approval before implementation.
 2. Develop behavior changes test-first with RED → GREEN → REFACTOR.
-3. Commit small, coherent slices that keep the branch green.
+3. Commit small, coherent slices that keep the branch green, and record a short review packet for each slice in the task plan.
 4. Update affected project documentation before shipping.
 5. Run a fresh, independent adversarial review and resolve valid findings.
-6. Run the local verification gate, then push and open one pull request.
+6. Run the local verification gate, then push and open one pull request that includes those packets.
 7. Watch CI and review feedback until the pull request is merge-ready.
 
 Shipmate stops at merge-ready. It never merges without a separate explicit request.
@@ -124,12 +124,12 @@ An approved Shipmate plan authorizes the shipping actions recorded in it: slice 
 
 ## 한국어
 
-Shipmate는 계획, TDD, 문서화, 적대적 리뷰, PR 모니터링을 하나의 흐름으로 연결해 효율적이고 신뢰할 수 있는 AI 기반 개발을 돕는 멀티 에이전트 워크플로 스킬입니다. 구현을 바로 시작하는 대신 계획과 승인부터 출발하고, RED → GREEN → REFACTOR의 TDD 사이클, 작은 단위의 커밋과 문서 갱신, 독립적인 적대적 리뷰를 거친 뒤 모든 로컬 검증이 끝났을 때 PR을 생성합니다. 계획에 shipping이 포함되어 있으면 승인 후 푸시와 PR 생성을 다시 묻지 않습니다. 각 계획에는 프로토콜 기본값과 작업별 개발자 개입 조건을 포함한 중단 조건을 기록하며, 기록된 조건이 맞으면 shipping을 우회하지 않고 멈춰 방향을 묻습니다.
+Shipmate는 계획, TDD, 문서화, 적대적 리뷰, PR 모니터링을 하나의 흐름으로 연결해 효율적이고 신뢰할 수 있는 AI 기반 개발을 돕는 멀티 에이전트 워크플로 스킬입니다. 구현을 바로 시작하는 대신 계획과 승인부터 출발하고, RED → GREEN → REFACTOR의 TDD 사이클, 작은 단위의 커밋, 각 슬라이스의 짧은 리뷰 패킷 기록, 문서 갱신, 독립적인 적대적 리뷰를 거친 뒤 모든 로컬 검증이 끝났을 때 그 패킷을 재작성하지 않고 첨부한 PR을 생성합니다. 계획에 shipping이 포함되어 있으면 승인 후 푸시와 PR 생성을 다시 묻지 않습니다. 각 계획에는 프로토콜 기본값과 작업별 개발자 개입 조건을 포함한 중단 조건을 기록하며, 기록된 조건이 맞으면 shipping을 우회하지 않고 멈춰 방향을 묻습니다.
 
 두 개의 스킬로 구성됩니다.
 
 - `shipmate-setup`: 프로젝트에 처음 한 번 실행합니다. 최상단 `AGENTS.md`의 공통 작업 규칙과 문서 구조를 만들고, 기존 테스트 프레임워크·테스트 위치·실행 명령을 탐지해 `docs/reference/testing.md`에 기록합니다.
-- `shipmate`: 실제 개발 작업에 사용합니다. 계획 승인 → RED/GREEN/REFACTOR → 구현 슬라이스와 원자적 커밋 → 문서 갱신 → 독립 리뷰 에이전트의 적대적 검토 → 수정 및 최종 검증 → PR 생성 → CI와 리뷰 피드백 관찰 순서로 진행합니다.
+- `shipmate`: 실제 개발 작업에 사용합니다. 계획 승인 → RED/GREEN/REFACTOR → 구현 슬라이스와 원자적 커밋 → 각 슬라이스의 짧은 리뷰 패킷을 작업 계획에 기록 → 문서 갱신 → 독립 리뷰 에이전트의 적대적 검토 → 수정 및 최종 검증 → 패킷을 그대로 첨부한 PR 생성 → CI와 리뷰 피드백 관찰 순서로 진행합니다.
 
 ```text
 SETUP → PLAN → PLAN GATE → RED → GREEN → REFACTOR → DOCUMENT
