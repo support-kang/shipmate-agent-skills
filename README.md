@@ -26,10 +26,10 @@ Shipmate requires the agent to:
 
 1. Inspect the repository, write a durable plan with stop conditions, and obtain approval before implementation.
 2. Develop behavior changes test-first with RED → GREEN → REFACTOR.
-3. Commit small, coherent slices that keep the branch green.
+3. Commit small, coherent slices that keep the branch green, and record a short review packet for each slice in the task plan.
 4. Update affected project documentation before shipping.
 5. Run a fresh, independent adversarial review and resolve valid findings.
-6. Run the local verification gate, then push and open one pull request.
+6. Run the local verification gate, then push and open one pull request that includes those packets.
 7. Watch CI and review feedback until the pull request is merge-ready.
 
 Shipmate stops at merge-ready. It never merges without a separate explicit request.
@@ -129,7 +129,7 @@ Shipmate는 계획, TDD, 문서화, 적대적 리뷰, PR 모니터링을 하나�
 두 개의 스킬로 구성됩니다.
 
 - `shipmate-setup`: 프로젝트에 처음 한 번 실행합니다. 최상단 `AGENTS.md`의 공통 작업 규칙과 문서 구조를 만들고, 기존 테스트 프레임워크·테스트 위치·실행 명령을 탐지해 `docs/reference/testing.md`에 기록합니다.
-- `shipmate`: 실제 개발 작업에 사용합니다. 계획 승인 → RED/GREEN/REFACTOR → 구현 슬라이스와 원자적 커밋 → 문서 갱신 → 독립 리뷰 에이전트의 적대적 검토 → 수정 및 최종 검증 → PR 생성 → CI와 리뷰 피드백 관찰 순서로 진행합니다.
+- `shipmate`: 실제 개발 작업에 사용합니다. 계획 승인 → RED/GREEN/REFACTOR → 구현 슬라이스와 원자적 커밋 → 각 슬라이스의 짧은 리뷰 패킷을 작업 계획에 기록 → 문서 갱신 → 독립 리뷰 에이전트의 적대적 검토 → 수정 및 최종 검증 → 패킷을 그대로 첨부한 PR 생성 → CI와 리뷰 피드백 관찰 순서로 진행합니다.
 
 ```text
 SETUP → PLAN → PLAN GATE → RED → GREEN → REFACTOR → DOCUMENT

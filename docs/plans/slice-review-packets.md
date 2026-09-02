@@ -74,10 +74,19 @@ powershell -ExecutionPolicy Bypass -File scripts/validate.ps1
 ## Slices
 
 ### Slice: protocol
+- SHA: `bb6be18`
 - Intent: require a one-screen slice review packet in the development protocol
 - Changed: `skills/shipmate/references/workflow.md` — IMPLEMENT records the packet, DOCUMENT does not rewrite it, review treats it as a map, PR copies it with SHA, BABYSIT uses the same packet
 - Why this: reuse `docs/plans/` and the PR body; skipped a new artifact type and raw transcripts
 - Look here: IMPLEMENT field list; PR copy-as-recorded rule; packet/diff mismatch as a finding
+- Verified: `powershell -ExecutionPolicy Bypass -File scripts/validate.ps1`
+- Unsure: none
+
+### Slice: documentation
+- Intent: make consumer-facing docs match the packet protocol
+- Changed: `skills/shipmate-setup/assets/AGENTS.block.md`, `skills/shipmate-setup/assets/docs-template/plans/README.md`, `README.md`, this plan — contract, plan template, and workflow list now require packets and copy-as-recorded PRs
+- Why this: agents in consumer repos read AGENTS and the plan template, not only `workflow.md`; skipped i18n README copies and a new `features/` page
+- Look here: AGENTS slice-commit bullet; plans README copy rule; README steps 3 and 6
 - Verified: `powershell -ExecutionPolicy Bypass -File scripts/validate.ps1`
 - Unsure: none
 
